@@ -45,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
         holder.contactName.setText(contactList.get(position).getName());
+        holder.contactimg.setImageBitmap(contactList.get(position).getImage());
 
         holder.eachCard.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.contact_list_anim));
     }
@@ -63,6 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             contactName = itemView.findViewById(R.id.contactname);
             eachCard = itemView.findViewById(R.id.eachCard);
+            contactimg = itemView.findViewById(R.id.contactimg);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

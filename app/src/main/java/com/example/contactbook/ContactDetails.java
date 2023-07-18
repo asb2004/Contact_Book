@@ -1,6 +1,7 @@
 package com.example.contactbook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -29,11 +30,11 @@ public class ContactDetails extends AppCompatActivity {
     private final int MESSAGE_PERMISSON_CODE = 2;
     private String phoneNmber;
     TextView txtPersonName, txtcall;
-    ImageView toolbarBackButton, iconCall, iconMessage, toolbarEditButton, toolbarDeleteButton;
+    ImageView toolbarBackButton, iconCall, iconMessage, toolbarEditButton, toolbarDeleteButton, profile_image;
     TextView toolbarpageName;
     LinearLayout layoutCall, layoutMesssage;
     RecyclerViewAdapter recyclerViewAdapter;
-
+    Contact contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class ContactDetails extends AppCompatActivity {
         //database object
         dbHandler db = new dbHandler(ContactDetails.this);
         //contact obj
-        Contact contact = (Contact) getIntent().getSerializableExtra("contactObj");
+        contact = (Contact) getIntent().getSerializableExtra("contactObj");
 
         toolbarpageName = findViewById(R.id.toolbarPageName);
         toolbarpageName.setText("Contact info");
@@ -62,6 +63,11 @@ public class ContactDetails extends AppCompatActivity {
                 finish();
             }
         });
+
+        //profile image
+        profile_image = findViewById(R.id.profile_image);
+        contact.setImage(BitmapFunctions.getImage(getIntent().getByteArrayExtra("contactProfile")));
+        profile_image.setImageBitmap(contact.getImage());
 
         //call button
         layoutCall = findViewById(R.id.layoutCall);
@@ -117,6 +123,20 @@ public class ContactDetails extends AppCompatActivity {
                 });
 
                 alertDialog.show();
+            }
+        });
+
+        //edit button
+        toolbarEditButton = findViewById(R.id.toolbarEditButton);
+        toolbarEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toolbarEditButton.startAnimation(AnimationUtils.loadAnimation(toolbarEditButton.getContext(), R.anim.call_button));
+                Intent updateContact = new Intent(ContactDetails.this, updateContact.class);
+                updateContact.putExtra("updateContactProfile",BitmapFunctions.getBytes(contact.getImage()));
+                updateContact.putExtra("updateContactObj", contact);
+                finish();
+                startActivity(updateContact);
             }
         });
     }

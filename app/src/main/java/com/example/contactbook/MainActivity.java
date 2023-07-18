@@ -1,6 +1,7 @@
 package com.example.contactbook;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
@@ -101,11 +102,11 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public void onItemClicked(Contact contact) {
-
         Intent contactDetail = new Intent(MainActivity.this, ContactDetails.class);
 //        contactDetail.putExtra("personID", String.valueOf(contact.getId()));
 //        contactDetail.putExtra("personName", contact.getName());
 //        contactDetail.putExtra("personNumber", contact.getNumber());
+        contactDetail.putExtra("contactProfile", BitmapFunctions.getBytes(contact.getImage()));
         contactDetail.putExtra("contactObj", contact);
         startActivity(contactDetail);
     }

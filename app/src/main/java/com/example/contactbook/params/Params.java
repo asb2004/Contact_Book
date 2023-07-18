@@ -9,4 +9,5 @@ public class Params {
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_NUMBER = "phone_number";
+    public static final String KEY_IMAGE = "profile_image";
 }

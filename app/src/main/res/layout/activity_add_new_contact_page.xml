@@ -4,7 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNewContactPage">
+    tools:context=".AddNewContactPage"
+    android:background="@color/black">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/add_contact_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_picker"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/picker_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2" />
 
     <EditText
         android:id="@+id/inputNumber"
@@ -16,6 +34,7 @@
         android:hint="Enter Number"
         android:inputType="number"
         android:padding="10dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputName" />
@@ -24,27 +43,26 @@
         android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/search_view_bg"
         android:ems="10"
         android:hint="Enter Name"
         android:inputType="textPersonName"
         android:padding="10dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/image_picker" />
 
-    <Button
-        android:id="@+id/btnsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="\save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNumber"
-        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imagePickerIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_picker"
+        app:layout_constraintEnd_toEndOf="@+id/image_picker"
+        app:layout_constraintStart_toStartOf="@+id/image_picker"
+        app:layout_constraintTop_toTopOf="@+id/image_picker"
+        app:srcCompat="@drawable/img_picker_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
